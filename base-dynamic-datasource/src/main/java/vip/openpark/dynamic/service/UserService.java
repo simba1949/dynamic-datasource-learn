@@ -17,11 +17,22 @@ public class UserService {
 	@Resource
 	private UserDOMapper userDOMapper;
 	
+	/**
+	 * 读（read application.properties 配置的 read）
+	 *
+	 * @param id 用户id
+	 * @return 用户
+	 */
 	@DS("read")
 	public UserDO getUser(Long id) {
 		return userDOMapper.selectByPrimaryKey(id);
 	}
 	
+	/**
+	 * 写（write application.properties 配置的 write）
+	 *
+	 * @param userDO 用户
+	 */
 	@DS("write")
 	public void saveUser(UserDO userDO) {
 		userDOMapper.insertSelective(userDO);
