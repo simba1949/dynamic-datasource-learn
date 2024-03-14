@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import javax.sql.DataSource;
@@ -33,5 +34,21 @@ public class MyBatisWriteConfig {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource1());
 		return sqlSessionFactoryBean.getObject();
+	}
+	
+	/**
+	 * 读库事务管理器
+	 * 使用 {@link org.springframework.transaction.annotation.Transactional} 只能管理一个数据源，多数据源同时写时，出现异常只能有一个回滚
+	 * 1.可以使用嵌套的编程式事务管理
+	 * 2.可以使用嵌套的声明式事务管理
+	 *
+	 * @return 事务管理器
+	 */
+	@Bean
+	@Primary
+	public DataSourceTransactionManager readDataSourceTransactionManager() {
+		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+		dataSourceTransactionManager.setDataSource(dataSource1());
+		return dataSourceTransactionManager;
 	}
 }
