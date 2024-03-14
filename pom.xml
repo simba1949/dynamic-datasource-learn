@@ -12,9 +12,10 @@
     <modules>
         <module>base-simple-datasource</module>
         <module>base-abstract-routing-datasource</module>
+        <module>base-multi-mybatis-datasource</module>
         <module>base-mybatis-interceptor-switch-datasource</module>
         <module>base-aop-switch-datasource</module>
-        <module>base-multi-mybatis-datasource</module>
+        <module>base-dynamic-datasource</module>
     </modules>
 
     <properties>
