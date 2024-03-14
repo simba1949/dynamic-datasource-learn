@@ -12,7 +12,8 @@
     <modules>
         <module>base-simple-datasource</module>
         <module>base-abstract-routing-datasource</module>
-        <module>base-mybatis-interceptor</module>
+        <module>base-mybatis-interceptor-switch-datasource</module>
+        <module>base-aop-switch-datasource</module>
     </modules>
 
     <properties>

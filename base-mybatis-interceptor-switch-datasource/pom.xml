@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>base-mybatis-interceptor</artifactId>
-    <description>基于 MyBatis 的拦截器</description>
+    <artifactId>base-mybatis-interceptor-switch-datasource</artifactId>
+    <description>基于 MyBatis 插件实现多数据源的切换</description>
 
     <parent>
         <groupId>vip.openpark</groupId>

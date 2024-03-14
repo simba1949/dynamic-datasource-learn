@@ -10,8 +10,8 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @MapperScan("vip.openpark.mybatis.mapper")
 @SpringBootApplication
-public class MyBatisApplication {
+public class MyBatisInterceptorApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(MyBatisApplication.class, args);
+		SpringApplication.run(MyBatisInterceptorApplication.class, args);
 	}
 }
