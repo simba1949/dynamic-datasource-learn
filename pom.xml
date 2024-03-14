@@ -10,7 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>base-custom-datasource</module>
+        <module>base-simple-datasource</module>
+        <module>base-abstract-routing-datasource</module>
         <module>base-mybatis-interceptor</module>
     </modules>
 
