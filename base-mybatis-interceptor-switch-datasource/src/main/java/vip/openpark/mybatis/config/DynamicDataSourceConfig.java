@@ -50,7 +50,7 @@ public class DynamicDataSourceConfig extends AbstractRoutingDataSource {
 		super.setTargetDataSources(map);
 		
 		// 为 defaultTargetDataSource 设置默认的数据源
-		super.setDefaultTargetDataSource(dataSource2);
+		super.setDefaultTargetDataSource(dataSource1);
 		
 		super.afterPropertiesSet();
 	}

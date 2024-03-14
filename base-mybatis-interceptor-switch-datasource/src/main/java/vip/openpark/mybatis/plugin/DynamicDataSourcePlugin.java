@@ -1,12 +1,13 @@
 package vip.openpark.mybatis.plugin;
 
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import vip.openpark.mybatis.config.DataSourceEnum;
 import vip.openpark.mybatis.config.DynamicDataSourceConfig;
 
@@ -15,8 +16,10 @@ import vip.openpark.mybatis.config.DynamicDataSourceConfig;
  * @since 2024/3/14 20:40
  */
 @Intercepts({
-	@Signature(type = Executor.class, method = "select", args = {MappedStatement.class}),
-	@Signature(type = Executor.class, method = "update", args = {MappedStatement.class}),
+	@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
+	@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
+	@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class}),
+	@Signature(type = Executor.class, method = "queryCursor", args = {MappedStatement.class, Object.class, RowBounds.class})
 })
 public class DynamicDataSourcePlugin implements Interceptor {
 	@Override
@@ -32,5 +35,14 @@ public class DynamicDataSourcePlugin implements Interceptor {
 			DynamicDataSourceConfig.dataSourceType.set(DataSourceEnum.WRITE);
 		}
 		return invocation.proceed();
+	}
+	
+	@Override
+	public Object plugin(Object target) {
+		if (target instanceof Executor) {
+			return Plugin.wrap(target, this);
+		} else {
+			return target;
+		}
 	}
 }

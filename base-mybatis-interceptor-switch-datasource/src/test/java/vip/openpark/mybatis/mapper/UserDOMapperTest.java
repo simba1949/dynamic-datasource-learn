@@ -24,4 +24,13 @@ public class UserDOMapperTest {
 		log.info("dataList:{}", dataList.size());
 		dataList.forEach(ele -> log.info("ele:{}", ele.toString()));
 	}
+	
+	@Test
+	public void updateByPrimaryKeySelectiveTest() {
+		UserDO userDO = new UserDO();
+		userDO.setId(1L);
+		userDO.setPhone("13112341234");
+		int count = userDOMapper.updateByPrimaryKeySelective(userDO);
+		log.info("count:{}", count);
+	}
 }
